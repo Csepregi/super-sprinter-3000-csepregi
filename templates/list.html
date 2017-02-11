@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Sprinter 3000</title>
+</head>
+<h1>User Story Manager</h1>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+th, td {
+    padding: 20px;
+}
+th {
+    text-align: left;
+}
+</style>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>User Story</th>
+            <th>Acceptence criteria</th>
+            <th>Business value</th>
+            <th>Estimation</th>
+            <th>Status</th>
+        </tr>
+    {% for item in stories %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.story }}</td>
+            <td>{{ item.criteria }}</td>
+            <td>{{ item.business_value }}</td>
+            <td>{{ item.estimation}}</td>
+            <td>{{ item.status}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
