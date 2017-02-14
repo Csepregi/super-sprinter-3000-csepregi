@@ -17,6 +17,11 @@ th {
     text-align: left;
 }
 </style>
+<form action="{{ url_for('add_story')}}">
+    <input type="submit" value="Add new User Story">
+</form>
+<br><br>
+
 <body>
     <table style="width:100%">
         <tr>
@@ -37,6 +42,16 @@ th {
             <td>{{ item.business_value }}</td>
             <td>{{ item.estimation}}</td>
             <td>{{ item.status}}</td>
+            <td>
+                <form action="/story" method="get">
+						<input type="image" src="../static/pencil.png" width="20" alt="Edit">
+					</form>
+            </td>
+            <td>
+            <form action="/delete/{{item.id}}" method="post">
+						<input type="image" src="../static/bin.png" width="20" alt="Delete">
+					</form>
+            </td>
         </tr>
     {% endfor %}
     </table>

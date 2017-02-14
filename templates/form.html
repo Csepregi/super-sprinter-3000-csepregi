@@ -2,9 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% if new == False %}
+    <title>Super Sprinter 3000 - Edit Story</title>
+    {%else%}
+    <title>Super Sprinter 3000 - Add New Story</title>
+    {% endif %}
 </head>
-<body>
 
+
+<body>
+{% if new == True %}
+<h1>User Story Manager - Add New Story</h1>
+<form action="/story" method="POST">
+    Story title:<br><br> <textarea rows="1" cols="100" name="title"></textarea>
+    <p>User story: <br><br> <textarea rows="8" cols="100" name="story"></textarea></p>
+    <br><br>
+    <label for="textarea">Acceptance:
+        <br><br>
+        <textarea id="acceaptance" rows="8" cols="100" name="criteria"></textarea>
+    </label>
+    <p>Businuess value</p>
+    <input type="number" min="100" max="1500" step="100" value="100" name="business_value"></p>
+    <p>Estimation (h)</p>
+    <input type="number" min="0.5" max="40" step="0.5" value="0.5" name="estimation">
+    <p>Status</p>
+    <select name="status">
+        <option value="Planning">Planning</option>
+        <option value="To do">To do</option>
+        <option value="In progress">In progress</option>
+        <option value="Review">Review</option>
+        <option value="Done">Done</option>
+    </select>
+    <p><input type="submit">Create</input></p>
+</form>
+
+{% else %}
+<h1>User Story Manager - Edit Story</h1>
+<form action="/edit/id" method="POST">
+    Story title:<br><br>
+    <textarea rows="1" cols="100" name="title">
+        {{edit.title}}
+    </textarea>
+    <p>User story:<br><br>
+        <textarea rows="8" cols="100" name="story">
+            {{edit.story}}
+    </textarea></p>
+    <br><br>
+    <label for="textarea">Acceptance:
+        <br><br>
+        <textarea id="textarea" rows="8" cols="100" name="criteria">
+            {{edit.criteria}}
+        </textarea>
+    </label>
+    <p>Businuess value</p>
+    <input type="number" min="100" max="1500" step="100" value="{{edit.business_value}}" name="business_value"></p>
+    <p>Estimation (h)</p>
+    <input type="number" min="0.5" max="40" step="0.5" value="{{edit.estimation}}" name="estimation">
+    <p>Status</p>
+    <select name="status">
+        <option value="Planning">Planning</option>
+        <option value="To do">To do</option>
+        <option value="In progress">In progress</option>
+        <option value="Review">Review</option>
+        <option value="Done">Done</option>
+    </select>
+    <p><input type="submit">Create</input></p>
+</form>
+{% endif %}
 </body>
 </html>
